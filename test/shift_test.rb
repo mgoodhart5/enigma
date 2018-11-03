@@ -26,4 +26,10 @@ class ShiftTest < Minitest::Test
     assert_equal [05, 54, 41, 12], shift.keys("05412")
   end
 
+  def test_that_it_can_mmddyy_a_date_object
+    shift = Shift.new("05412")
+
+    assert_equal "031118", shift.date_format
+  end
+
 end
