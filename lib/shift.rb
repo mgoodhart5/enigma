@@ -1,11 +1,12 @@
 require 'pry'
 
 class Shift
-  attr_reader :key, :date
+  attr_reader :random_number, :date
 
-  def initialize(key, date = Date.new)
-    @key = key
+  def initialize(random_number, date = Date.new)
+    @random_number = random_number
     @date = date
   end
+
 
 end
