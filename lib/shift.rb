@@ -39,6 +39,13 @@ class Shift
     end
   end
 
+  def shift_values
+    numbers = offset_numbers.zip(keys(random_number))
+    numbers.map do |mini_array|
+      mini_array.sum
+    end
+  end
+
 
 
 
