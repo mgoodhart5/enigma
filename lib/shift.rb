@@ -3,7 +3,7 @@ require 'pry'
 class Shift
   attr_reader :random_number, :date
 
-  def initialize(random_number, date = Date.new)
+  def initialize(random_number, date = Time.new)
     @random_number = random_number
     @date = date
   end
@@ -19,6 +19,25 @@ class Shift
     end
     keys
   end
+
+  def date_format
+    if @date.class == Time
+      format = @date.strftime("%d%m%y")
+    end
+    format
+  end
+
+  def offset_numbers(date_format)
+    data = (date_format.to_i * date_format.to_i)
+    offset_strings = data.to_s.split("").reverse
+    offset_numbers = offset_strings[0..3]
+    offset_numbers.map do |number|
+      number.to_i
+    end
+  end
+
+
+
 
 
 end

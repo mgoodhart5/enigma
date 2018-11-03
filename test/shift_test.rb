@@ -17,7 +17,7 @@ class ShiftTest < Minitest::Test
 
     shift = Shift.new("05412")
 
-    assert_instance_of Date, shift.date
+    assert_instance_of Time, shift.date
   end
 
   def test_that_it_can_create_the_keys_from_not_yet_random_number
@@ -30,6 +30,13 @@ class ShiftTest < Minitest::Test
     shift = Shift.new("05412")
 
     assert_equal "031118", shift.date_format
+  end
+
+  def test_that_it_can_square_the_date_and_get_last_4_digits
+    shift = Shift.new("05412")
+    date_data = "031118"
+
+    assert_equal [4,2,9,9], shift.offset_numbers(date_data)
   end
 
 end
