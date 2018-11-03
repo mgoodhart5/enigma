@@ -23,7 +23,7 @@ class ShiftTest < Minitest::Test
   def test_that_it_can_create_the_keys_from_not_yet_random_number
     shift = Shift.new("05412", "300484")
 
-    assert_equal [05, 54, 41, 12], shift.keys
+    assert_equal [05, 54, 41, 12], shift.keys("05412")
   end
 
 end
