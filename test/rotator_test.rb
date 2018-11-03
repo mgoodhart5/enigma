@@ -10,8 +10,12 @@ class RotatorTest < Minitest::Test
 
   def test_that_it_it_initialized_with_a_character_map
     rotator = Rotator.new
-    expected = [("a".."z").to_a << " "]
+    expected = ("a".."z").to_a << " "
     assert_equal expected, rotator.character_map
   end
-  
+
+  def test_that_it_can_rotate_a_letter
+    
+  end
+
 end
