@@ -27,13 +27,14 @@ class Shift
     format.to_i
   end
 
-
-
-  def offset_numbers(date_format)
+  def offset_number_math(date_format)
     data = (date_format * date_format)
     offset_strings = data.to_s.split("").reverse
-    offset_numbers = offset_strings[0..3]
-    offset_numbers.map do |number|
+    offset_strings[0..3]
+  end
+
+  def offset_numbers
+    offset_number_math(date_format).map do |number|
       number.to_i
     end
   end
