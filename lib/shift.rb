@@ -24,11 +24,13 @@ class Shift
     if @date.class == Time
       format = @date.strftime("%d%m%y")
     end
-    format
+    format.to_i
   end
 
+
+
   def offset_numbers(date_format)
-    data = (date_format.to_i * date_format.to_i)
+    data = (date_format * date_format)
     offset_strings = data.to_s.split("").reverse
     offset_numbers = offset_strings[0..3]
     offset_numbers.map do |number|

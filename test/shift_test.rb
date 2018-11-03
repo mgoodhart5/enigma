@@ -29,14 +29,23 @@ class ShiftTest < Minitest::Test
   def test_that_it_can_mmddyy_a_date_object
     shift = Shift.new("05412")
 
-    assert_equal "031118", shift.date_format
+    assert_equal 31118, shift.date_format
   end
 
-  def test_that_it_can_square_the_date_and_get_last_4_digits
+  def test_that_it_can_square_and_reverse_date
     shift = Shift.new("05412")
-    date_data = "031118"
+
+    assert_equal ["some crazy array of numbers"], shift.offset_number_math
+  end
+
+  end
+
+  def test_that_it_can_get_last_4_digits_of_date
+    shift = Shift.new("05412")
+    date_data = 31118
 
     assert_equal [4,2,9,9], shift.offset_numbers(date_data)
   end
+
 
 end
