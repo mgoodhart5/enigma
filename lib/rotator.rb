@@ -1,10 +1,5 @@
-require './test/test_helper'
-require './lib/rotator'
+require 'pry'
 
-class RotatorTest < Minitest::Test
-  def test_that_it_exists
-    rotator = Rotator.new
+class Rotator
 
-    assert_instance_of Rotator, rotator
-  end
 end
