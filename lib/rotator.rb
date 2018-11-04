@@ -7,12 +7,13 @@ class Rotator
     @character_map = ("a".."z").to_a << " "
   end
 
-  def rotate(message, shift_amount)
+  def rotate(message, shift_amounts)
+    binding.pry
     #i need to figure out how to pass in the shift amount
     split_message = message.split("")
     split_message.map do |character|
       character_index = @character_map.index(character)
-      rotated_alphabet = @character_map.rotate(shift_amount)
+      rotated_alphabet = @character_map.rotate(shift_amounts)
       if character_index
         rotated_alphabet[character_index]
       elsif
