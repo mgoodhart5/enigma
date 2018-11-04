@@ -15,7 +15,9 @@ class RotatorTest < Minitest::Test
   end
 
   def test_that_it_can_rotate_a_letter
-    
+    rotator = Rotator.new
+
+    assert_equal "b", rotator.rotate("a", 1)
   end
 
 end
