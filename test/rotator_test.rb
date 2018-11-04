@@ -38,7 +38,7 @@ class RotatorTest < Minitest::Test
     assert_equal "b!", rotator.rotate("a!", 1)
   end
 
-  def test_that_it_can_take_Shift_values
+  def test_that_it_can_take_a_Shift_value
     rotator = Rotator.new
     shift = Shift.new("05412")
     shift_amounts = shift.shift_values
