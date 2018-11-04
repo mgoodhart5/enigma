@@ -7,10 +7,19 @@ class Rotator
     @character_map = ("a".."z").to_a << " "
   end
 
-  def rotate(letter, shift_amount)
-    letter_thing = @character_map.index(letter)
-    rotated_alphabet = @character_map.rotate(shift_amount)
-    rotated_alphabet[letter_thing]
+  def rotate(message, shift_amount)
+    #i need to figure out how to pass in the shift amount
+    split_message = message.split("")
+    split_message.map do |character|
+      character_index = @character_map.index(character)
+      rotated_alphabet = @character_map.rotate(shift_amount)
+      if character_index
+        rotated_alphabet[character_index]
+      elsif
+        character_index == nil
+        character
+      end
+    end.join
   end
 
 end

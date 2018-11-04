@@ -20,17 +20,17 @@ class RotatorTest < Minitest::Test
     assert_equal "b", rotator.rotate("a", 1)
   end
 
+
+  def test_that_it_can_rotate_and_produce_an_encoded_word
+    rotator = Rotator.new
+
+    assert_equal "ifmmp", rotator.rotate("hello", 1)
+  end
+
   def test_that_it_returns_unknown_characters_as_themselves
-    skip
     rotator = Rotator.new
 
-    assert_equal "a!"
+    assert_equal "b!", rotator.rotate("a!", 1)
+    binding.pry
   end
-
-  def test_that_it_can_rotate_and_produce_a_word
-    rotator = Rotator.new
-
-    assert_equal "hello", rotator.rotate("hello", 1)
-  end
-
 end
