@@ -8,13 +8,13 @@ class Rotator
   end
 
   def rotate(message, shift_amounts)
-    binding.pry
-    #i need to figure out how to pass in the shift amount
     split_message = message.split("")
-    encoded_message = split_message.map do |character|
+    encoded_message = split_message.map.with_index do |character, index|
       character_index = @character_map.index(character)
-      rotated_alphabet = @character_map.rotate(shift_amounts[2])
       if character_index
+        shift_index = index % shift_amounts.length
+        rotated_alphabet = @character_map.rotate(shift_amounts[shift_index])
+        # binding.pry
         rotated_alphabet[character_index]
       elsif
         character_index == nil
@@ -24,8 +24,5 @@ class Rotator
     encoded_message.join
   end
 
-  #shiftamount index needs to start at zero, then add up to three
-  #then start at zero again
-  #for the whole message
 
 end
