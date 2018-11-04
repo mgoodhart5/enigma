@@ -24,7 +24,6 @@ class RotatorTest < Minitest::Test
     assert_equal "b", rotator.rotate("a", 1)
   end
 
-
   def test_that_it_can_rotate_and_produce_an_encoded_word
     skip
     rotator = Rotator.new
@@ -42,9 +41,10 @@ class RotatorTest < Minitest::Test
   def test_that_it_can_take_Shift_values
     rotator = Rotator.new
     shift = Shift.new("05412")
-    shift_amounts = shift.rotate_values
+    shift_amounts = shift.shift_values
     actual = rotator.rotate("a", shift_amounts)
 
     assert_equal "something", actual
   end
+
 end
