@@ -35,7 +35,6 @@ class RotatorTest < Minitest::Test
     rotator = Rotator.new
     shift = Shift.new("05412")
     shift_amounts = shift.shift_values
-
     assert_equal "j!", rotator.rotate_forwards("a!", shift_amounts)
   end
 
