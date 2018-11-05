@@ -24,7 +24,6 @@ class Enigma
   end
 
   def decrypt(message, key, date = Time.new)
-    #why won't it pass if default shift date IS time.new
     answer = {}
     shift_amounts = Shift.new(key, date).shift_values
     answer[:decryption] = Rotator.new.rotate_backwards(message, shift_amounts)

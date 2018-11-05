@@ -23,6 +23,7 @@ class EnigmaTest < Minitest::Test
          key: "02715",
          date: "040895"
        }
+
     assert_equal expected, enigma.encrypt(message_1, key, date)
   end
 
@@ -43,6 +44,7 @@ class EnigmaTest < Minitest::Test
          key: "02715",
          date: "051118"
        }
+
     assert_equal expected, enigma.encrypt(message_1, key, date)
   end
 
@@ -56,6 +58,7 @@ class EnigmaTest < Minitest::Test
          key: "02715",
          date: "040895"
        }
+
     assert_equal expected, enigma.decrypt(message_1, key, date)
   end
 
@@ -72,7 +75,8 @@ class EnigmaTest < Minitest::Test
          key: "02715",
          date: "051118"
        }
-    assert_equal expected, enigma.decrypt(encrypted[:encryption], "02715")
+       
+    assert_equal expected, enigma.decrypt(encrypted[:encryption], key)
   end
 
   def test_that_it_can_encrypt_a_message_with_randomly_generated_number_and_todays_date

@@ -12,9 +12,4 @@ class Generator
     generated_number.join
   end
 
-  #to make this a class method that so that 
-  #generator.randomizer is what creates the instance
-  #of the class
-
-
 end

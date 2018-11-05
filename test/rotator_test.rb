@@ -3,6 +3,7 @@ require './lib/rotator'
 require './lib/shift'
 
 class RotatorTest < Minitest::Test
+  
   def test_that_it_exists
     rotator = Rotator.new
 
@@ -12,6 +13,7 @@ class RotatorTest < Minitest::Test
   def test_that_it_it_initialized_with_a_character_map
     rotator = Rotator.new
     expected = ("a".."z").to_a << " "
+
     assert_equal expected, rotator.character_map
   end
 
@@ -35,13 +37,6 @@ class RotatorTest < Minitest::Test
     rotator = Rotator.new
     shift = Shift.new("05412")
     shift_amounts = shift.shift_values
-    # character = "a"
-    # index = 0
-    # shift_amounts = [14, 63, 43, 16]
-    # direction = 1
-    # letters_converted = shift.letter_conversion(character, index, shift_amounts, direction)
-    #
-    # assert_equal "something", letters_converted
 
     assert_equal "o!", rotator.rotate_forwards("a!", shift_amounts)
   end
@@ -59,7 +54,7 @@ class RotatorTest < Minitest::Test
     assert_equal "neabu lexlt", actual_2
   end
 
-  #use a real date and test other dates to ensure correctness and some whatevers
+  # use a real date and test other dates to ensure correctness and some whatevers
 
   def test_that_it_can_decrypt_with_shift_value_also
     rotator = Rotator.new
