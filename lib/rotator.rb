@@ -32,7 +32,5 @@ class Rotator
       character
     end
   end
-  #make_a_test_for_me
-
 
 end
