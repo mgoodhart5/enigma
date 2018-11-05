@@ -31,8 +31,7 @@ class Shift
 
   def offset_number_math(date_format)
     data = (date_format * date_format)
-    offset_strings = data.to_s.split("").reverse
-    offset_strings[0..3]
+    data.to_s.split("")[-4..-1]
   end
 
   def offset_numbers

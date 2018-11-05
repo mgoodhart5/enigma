@@ -2,7 +2,15 @@ require 'pry'
 require 'date'
 
 class Enigma
+
+  def encrypt(message, key, date)
+    shift_amounts = Shift.new(key, date).shift_values
+    Rotator.new.rotate_forwards(message, shift_amounts)
+  end
+
 end
+
+
 #
 # require 'date'
 # #=> true

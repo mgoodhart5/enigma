@@ -7,7 +7,6 @@ class Rotator
     @character_map = ("a".."z").to_a << " "
   end
 
-
   def rotate_forwards(message, shift_amounts)
     split_message = message.split("")
     encoded_message = split_message.map.with_index do |character, index|
@@ -15,7 +14,6 @@ class Rotator
       if character_index
         shift_index = index % shift_amounts.length
         rotated_alphabet = @character_map.rotate(shift_amounts[shift_index])
-        # binding.pry
         rotated_alphabet[character_index]
       elsif
         character_index == nil
@@ -32,7 +30,6 @@ class Rotator
       if character_index
         shift_index = index % shift_amounts.length
         rotated_alphabet = @character_map.rotate(-shift_amounts[shift_index])
-        # binding.pry
         rotated_alphabet[character_index]
       elsif
         character_index == nil
