@@ -22,15 +22,16 @@ class Shift
 
   def date_format
     if @date.class == Time
-      format = @date.strftime("%d%m%y")
+      @date.strftime("%d%m%y").to_i
+    elsif
+      @date.class == String
+      @date.to_i
     end
-    format.to_i
   end
 
   def offset_number_math(date_format)
     data = (date_format * date_format)
-    offset_strings = data.to_s.split("").reverse
-    offset_strings[0..3]
+    data.to_s.split("")[-4..-1]
   end
 
   def offset_numbers
@@ -45,5 +46,6 @@ class Shift
       mini_array.sum
     end
   end
+
 
 end

@@ -20,7 +20,7 @@ class RotatorTest < Minitest::Test
     shift = Shift.new("05412")
     shift_amounts = shift.shift_values
 
-    assert_equal "j", rotator.rotate_forwards("a", shift_amounts)
+    assert_equal "o", rotator.rotate_forwards("a", shift_amounts)
   end
 
   def test_that_it_can_rotate_and_produce_an_encoded_word
@@ -28,28 +28,38 @@ class RotatorTest < Minitest::Test
     shift = Shift.new("05412")
     shift_amounts = shift.shift_values
 
-    assert_equal "qghfx", rotator.rotate_forwards("hello", shift_amounts)
+    assert_equal "vnaab", rotator.rotate_forwards("hello", shift_amounts)
   end
 
   def test_that_it_returns_unknown_characters_as_themselves
     rotator = Rotator.new
     shift = Shift.new("05412")
     shift_amounts = shift.shift_values
-    assert_equal "j!", rotator.rotate_forwards("a!", shift_amounts)
+    # character = "a"
+    # index = 0
+    # shift_amounts = [14, 63, 43, 16]
+    # direction = 1
+    # letters_converted = shift.letter_conversion(character, index, shift_amounts, direction)
+    #
+    # assert_equal "something", letters_converted
+
+    assert_equal "o!", rotator.rotate_forwards("a!", shift_amounts)
   end
 
   def test_that_it_can_take_a_Shift_value_and_use_it
     rotator = Rotator.new
-    shift = Shift.new("05412")
+    shift = Shift.new("05412", "040895")
     shift_amounts = shift.shift_values
     actual_1 = rotator.rotate_forwards("a", shift_amounts)
 
-    assert_equal "j", actual_1
+    assert_equal "g", actual_1
 
     actual_2 = rotator.rotate_forwards("hello world", shift_amounts)
 
-    assert_equal "qghfxbsi n ", actual_2
+    assert_equal "neabu lexlt", actual_2
   end
+
+  #use a real date and test other dates to ensure correctness and some whatevers
 
   def test_that_it_can_decrypt_with_shift_value_also
     rotator = Rotator.new
