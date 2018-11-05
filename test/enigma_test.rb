@@ -17,6 +17,7 @@ class EnigmaTest < Minitest::Test
     generator = Generator.new
     random_number = generator.randomizer
     shift = Shift.new(random_number, date)
+    date =  shift.
     shift.shift_values
     expected = {
          encryption: "keder ohulw",

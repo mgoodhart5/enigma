@@ -26,10 +26,14 @@ class ShiftTest < Minitest::Test
     assert_equal [05, 54, 41, 12], shift.keys("05412")
   end
 
-  def test_that_it_can_mmddyy_a_date_object
+  def test_that_it_can_mmddyy_a_date_object_or_to_i_a_date_string
     shift = Shift.new("05412")
 
-    assert_equal 31118, shift.date_format
+    assert_equal 51118, shift.date_format
+
+    shift = Shift.new("05412", "300484")
+
+    assert_equal 300484, shift.date_format
   end
 
   def test_that_it_can_square_and_reverse_date
@@ -49,6 +53,14 @@ class ShiftTest < Minitest::Test
     shift = Shift.new("05412")
 
     assert_equal [9, 56, 50, 21], shift.shift_values
+  end
+
+  def test_that_it_has_a_method_that_rotates_the_shift_values
+    skip
+    shift = Shift.new("05412")
+    shift_values = shift.shift_values
+
+    assert_equal "something", shift.rotating_values(shift_values)
   end
 
 end
