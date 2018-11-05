@@ -1,14 +1,10 @@
-require
+require './lib/enigma'
+
 message, encrypted_file = ARGV
 enigma = Enigma.new
-#open the message to be readable
-open encrypt file to be writeable
-encrypt method
-write in the encrypted.write file.
+message_text = open(message, "r") { |file| file.read }
+result = enigma.encrypt(message_text)
+encrypter = open(encrypted_file, "w")
+encrypter.write(result[:encryption])
 
-
-
-
-
-puts "Created '#{encrypted_file}' with the key "
-#interpolation for these things
+puts "Created '#{encrypted_file}' with the key #{result[:key]} date #{result[:date]} "
