@@ -7,7 +7,7 @@ class Rotator
     @character_map = ("a".."z").to_a << " "
   end
 
-  def rotate(message, shift_amounts)
+  def encrypt(message, shift_amounts)
     split_message = message.split("")
     encoded_message = split_message.map.with_index do |character, index|
       character_index = @character_map.index(character)
