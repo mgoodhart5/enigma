@@ -55,12 +55,4 @@ class ShiftTest < Minitest::Test
     assert_equal [9, 56, 50, 21], shift.shift_values
   end
 
-  def test_that_it_has_a_method_that_rotates_the_shift_values
-    skip
-    shift = Shift.new("05412")
-    shift_values = shift.shift_values
-
-    assert_equal "something", shift.rotating_values(shift_values)
-  end
-
 end
