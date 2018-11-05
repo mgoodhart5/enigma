@@ -20,13 +20,22 @@ class Enigma
     end
   end
 
+  def decrypt(message, key, date)
+    answer = {}
+    shift_amounts = Shift.new(key, date).shift_values
+    answer[:decryption] = Rotator.new.rotate_backwards(message, shift_amounts)
+    answer[:key] = key
+    answer[:date] = date_converter(date)
+    answer
+  end
+
 
 
 end
 
 
 
-
+# enigma.decrypt("keder ohulw", "02715", "040895")
 # #   {
 # #     decryption: "hello world",
 # #     key: "02715",

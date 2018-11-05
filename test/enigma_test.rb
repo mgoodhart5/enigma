@@ -45,6 +45,18 @@ class EnigmaTest < Minitest::Test
     assert_equal expected, enigma.encrypt(message_1, key, date)
   end
 
+  def test_that_it_can_decrypt_a_message_with_a_key_and_date
+    enigma = Enigma.new
+    key = "02715"
+    date = "040895"
+    message_1 = "keder ohulw"
+    expected = {
+         decryption: "hello world",
+         key: "02715",
+         date: "040895"
+       }
+    assert_equal expected, enigma.decrypt(message_1, key, date)
+  end
 
 
 end
