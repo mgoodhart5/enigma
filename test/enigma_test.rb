@@ -6,7 +6,7 @@ require './lib/generator'
 require 'date'
 
 class EnigmaTest < Minitest::Test
-  
+
   def test_that_it_exists
     enigma = Enigma.new
 
