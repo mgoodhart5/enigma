@@ -9,8 +9,11 @@ class Enigma
     answer[:encryption] = Rotator.new.rotate_forwards(message, shift_amounts)
     answer[:key] = key
     answer[:date] = date
+    # binding.pry
     answer
   end
+
+
 
 end
 
