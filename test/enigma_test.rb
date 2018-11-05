@@ -6,6 +6,7 @@ require './lib/generator'
 require 'date'
 
 class EnigmaTest < Minitest::Test
+  
   def test_that_it_exists
     enigma = Enigma.new
 
@@ -77,13 +78,21 @@ class EnigmaTest < Minitest::Test
   def test_that_it_can_encrypt_a_message_with_randomly_generated_number_and_todays_date
     enigma = Enigma.new
     message_1 = "hello world"
-    expected = {
+    encrypted = {
          encryption: "hpuzokebrwm",
          key: "45610",
          date: "051118"
        }
        #how do you test for a day that always changes
-    assert_equal expected, enigma.encrypt(message_1)
+    # assert_equal encrypted, enigma.encrypt(message_1)
+
+    expected_decryption = {
+         decryption: "hello world",
+         key: "45610",
+         date: "051118"
+       }
+
+    assert_equal expected_decryption, enigma.decrypt(encrypted[:encryption], "45610")
   end
 
 end
