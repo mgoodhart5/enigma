@@ -3,7 +3,7 @@ require 'date'
 
 class Enigma
 
-  def encrypt(message, key, date)
+  def encrypt(message, key = Generator.new.randomizer, date = Time.new)
     answer = {}
     shift_amounts = Shift.new(key, date).shift_values
     answer[:encryption] = Rotator.new.rotate_forwards(message, shift_amounts)

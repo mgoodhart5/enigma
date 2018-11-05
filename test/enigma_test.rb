@@ -74,5 +74,16 @@ class EnigmaTest < Minitest::Test
     assert_equal expected, enigma.decrypt(encrypted[:encryption], "02715")
   end
 
+  def test_that_it_can_encrypt_a_message_with_randomly_generated_number_and_todays_date
+    enigma = Enigma.new
+    message_1 = "hello world"
+    expected = {
+         encryption: "hpuzokebrwm",
+         key: "45610",
+         date: "051118"
+       }
+       #how do you test for a day that always changes
+    assert_equal expected, enigma.encrypt(message_1)
+  end
 
 end
