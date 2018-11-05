@@ -1,5 +1,6 @@
 require './test/test_helper'
 require './lib/rotator'
+require './lib/shift'
 
 class RotatorTest < Minitest::Test
   def test_that_it_exists
@@ -15,7 +16,50 @@ class RotatorTest < Minitest::Test
   end
 
   def test_that_it_can_rotate_a_letter
-    
+    rotator = Rotator.new
+    shift = Shift.new("05412")
+    shift_amounts = shift.shift_values
+
+    assert_equal "j", rotator.rotate_forwards("a", shift_amounts)
+  end
+
+  def test_that_it_can_rotate_and_produce_an_encoded_word
+    rotator = Rotator.new
+    shift = Shift.new("05412")
+    shift_amounts = shift.shift_values
+
+    assert_equal "qghfx", rotator.rotate_forwards("hello", shift_amounts)
+  end
+
+  def test_that_it_returns_unknown_characters_as_themselves
+    rotator = Rotator.new
+    shift = Shift.new("05412")
+    shift_amounts = shift.shift_values
+
+    assert_equal "j!", rotator.rotate_forwards("a!", shift_amounts)
+  end
+
+  def test_that_it_can_take_a_Shift_value_and_use_it
+    rotator = Rotator.new
+    shift = Shift.new("05412")
+    shift_amounts = shift.shift_values
+    actual_1 = rotator.rotate_forwards("a", shift_amounts)
+
+    assert_equal "j", actual_1
+
+    actual_2 = rotator.rotate_forwards("hello world", shift_amounts)
+
+    assert_equal "qghfxbsi n ", actual_2
+  end
+
+  def test_that_it_can_decrypt_with_shift_value_also
+    rotator = Rotator.new
+    shift = Shift.new("05412")
+    shift_amounts = shift.shift_values
+    encoded_message = rotator.rotate_forwards("hello world", shift_amounts)
+    actual = "hello world"
+
+    assert_equal actual, rotator.rotate_backwards(encoded_message, shift_amounts)
   end
 
 end
