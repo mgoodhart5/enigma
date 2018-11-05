@@ -1,5 +1,8 @@
 require 'pry'
 require 'date'
+require './lib/generator'
+require './lib/shift'
+require './lib/rotator'
 
 class Enigma
 
