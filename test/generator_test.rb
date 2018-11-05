@@ -17,8 +17,7 @@ class GeneratorTest < Minitest::Test
 
   def test_that_it_can_produce_randomly_generated_numbers
     generator = Generator.new
-    #this test always fails because it is raondom every time.
-    #zero-leading numbers have been produced
-    assert_equal "03148", generator.randomizer
+
+    assert_equal 5, generator.randomizer.length
   end
 end
