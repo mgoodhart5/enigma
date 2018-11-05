@@ -59,7 +59,7 @@ class RotatorTest < Minitest::Test
     encoded_message = rotator.rotate("hello world", shift_amounts)
     actual = "hello world"
 
-    assert_equal actual, rotator.decrpyt
+    assert_equal actual, rotator.decrypt(encoded_message, shift_amounts)
   end
 
 end
