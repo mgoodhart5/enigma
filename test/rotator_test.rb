@@ -39,7 +39,7 @@ class RotatorTest < Minitest::Test
     assert_equal "j!", rotator.rotate("a!", shift_amounts)
   end
 
-  def test_that_it_can_take_a_Shift_value
+  def test_that_it_can_take_a_Shift_value_and_use_it
     rotator = Rotator.new
     shift = Shift.new("05412")
     shift_amounts = shift.shift_values
@@ -50,6 +50,16 @@ class RotatorTest < Minitest::Test
     actual_2 = rotator.rotate("hello world", shift_amounts)
 
     assert_equal "qghfxbsi n ", actual_2
+  end
+
+  def test_that_it_can_decrypt_with_shift_value_also
+    rotator = Rotator.new
+    shift = Shift.new("05412")
+    shift_amounts = shift.shift_values
+    encoded_message = rotator.rotate("hello world", shift_amounts)
+    actual = "hello world"
+
+    assert_equal actual, rotator.decrpyt
   end
 
 end
