@@ -22,7 +22,6 @@ class EnigmaTest < Minitest::Test
          key: "02715",
          date: "040895"
        }
-       # binding.pry
     assert_equal expected, enigma.encrypt(message_1, key, date)
   end
 end
