@@ -27,31 +27,24 @@ class EnigmaTest < Minitest::Test
 
   def test_that_it_can_convert_dates_if_need_be
     enigma = Enigma.new
-    enigma = Enigma.new
-    key = "02715"
     date = Time.new
-    message_1 = "hello world"
-    expected = {
-         encryption: "keder ohulw",
-         key: "02715",
-         date: "040895"
-       }
 
-    assert_equal "051118", enigma.date_converter
+    assert_equal "051118", enigma.date_converter(date)
   end
 
   def test_that_it_can_encrypt_a_message_with_a_key_and_NOT_a_date
-    skip
     enigma = Enigma.new
     key = "02715"
     date = Time.new
     message_1 = "hello world"
     expected = {
-         encryption: "keder ohulw",
+         encryption: "snddziogbuw",
          key: "02715",
-         date: "040895"
+         date: "051118"
        }
     assert_equal expected, enigma.encrypt(message_1, key, date)
   end
+
+
 
 end

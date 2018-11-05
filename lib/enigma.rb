@@ -8,9 +8,16 @@ class Enigma
     shift_amounts = Shift.new(key, date).shift_values
     answer[:encryption] = Rotator.new.rotate_forwards(message, shift_amounts)
     answer[:key] = key
-    answer[:date] = date
-    # binding.pry
+    answer[:date] = date_converter(date)
     answer
+  end
+
+  def date_converter(date)
+    if date.class == Time
+      date.strftime("%d%m%y")
+    else
+      date
+    end
   end
 
 
