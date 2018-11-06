@@ -30,22 +30,49 @@ class EnigmaTest < Minitest::Test
   def test_that_it_can_convert_dates_if_need_be
     enigma = Enigma.new
     date = Time.new
+    expected = date.strftime("%d%m%y")
 
-    assert_equal "051118", enigma.date_converter(date)
+    assert_equal expected, enigma.date_converter(date)
   end
 
-  def test_that_it_can_encrypt_a_message_with_a_key_and_NOT_a_date
+  def test_that_it_can_encrypt_a_message_with_a_key_and_no_date
     enigma = Enigma.new
     key = "02715"
-    date = Time.new
     message_1 = "hello world"
-    expected = {
-         encryption: "snddziogbuw",
-         key: "02715",
-         date: "051118"
-       }
+    actual = enigma.encrypt(message_1, key)
+    date = Time.now.strftime("%d%m%y")
 
-    assert_equal expected, enigma.encrypt(message_1, key, date)
+    assert_equal 3, actual.keys.length
+    assert_equal 3, actual.values.length
+    assert_equal :encryption, actual.keys[0]
+    assert_equal Symbol, actual.keys[1].class
+    assert_equal String, actual.values[2].class
+    assert_equal date, actual[:date]
+  end
+
+  def test_that_it_can_encrypt_a_message_with_a_date_and_no_key
+    enigma = Enigma.new
+    date = "300484"
+    message_1 = "hello world"
+    actual = enigma.encrypt(message_1, date)
+
+    assert_equal 3, actual.keys.length
+    assert_equal 3, actual.values.length
+    assert_equal :encryption, actual.keys[0]
+    assert_equal Symbol, actual.keys[1].class
+    assert_equal String, actual.values[2].class
+  end
+
+  def test_that_it_can_encrypt_a_message_with_no_key_or_date
+    enigma = Enigma.new
+    message_1 = "hello world"
+    actual = enigma.encrypt(message_1)
+
+    assert_equal 3, actual.keys.length
+    assert_equal 3, actual.values.length
+    assert_equal :encryption, actual.keys[0]
+    assert_equal Symbol, actual.keys[1].class
+    assert_equal String, actual.values[2].class
   end
 
   def test_that_it_can_decrypt_a_message_with_a_key_and_date
@@ -65,35 +92,51 @@ class EnigmaTest < Minitest::Test
   def test_that_it_can_decrypt_a_message_with_a_key_and_a_date_of_now
     enigma = Enigma.new
     key = "02715"
+    date = Time.now.strftime("%d%m%y")
     encrypted = {
          encryption: "snddziogbuw",
          key: "02715",
-         date: "051118"
+         date: date
        }
     expected = {
          decryption: "hello world",
          key: "02715",
-         date: "051118"
+         date: date
        }
-       
+
+    assert_equal expected, enigma.decrypt(encrypted[:encryption], key, date)
+  end
+
+  def test_that_it_can_decrypt_a_message_with_a_key_and_no_date
+    enigma = Enigma.new
+    key = "02715"
+    date = Time.now.strftime("%d%m%y")
+    encrypted = {
+         encryption: "snddziogbuw",
+         key: "02715",
+         date: date
+       }
+    expected = {
+         decryption: "hello world",
+         key: "02715",
+         date: date
+       }
+
     assert_equal expected, enigma.decrypt(encrypted[:encryption], key)
   end
 
   def test_that_it_can_encrypt_a_message_with_randomly_generated_number_and_todays_date
     enigma = Enigma.new
-    message_1 = "hello world"
+    date = Time.now.strftime("%d%m%y")
     encrypted = {
          encryption: "hpuzokebrwm",
          key: "45610",
-         date: "051118"
+         date: date
        }
-       #how do you test for a day that always changes
-    # assert_equal encrypted, enigma.encrypt(message_1)
-
     expected_decryption = {
          decryption: "hello world",
          key: "45610",
-         date: "051118"
+         date: date
        }
 
     assert_equal expected_decryption, enigma.decrypt(encrypted[:encryption], "45610")
