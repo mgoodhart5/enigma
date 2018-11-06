@@ -47,5 +47,4 @@ class Shift
     end
   end
 
-
 end

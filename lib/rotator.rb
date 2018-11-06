@@ -8,7 +8,7 @@ class Rotator
   end
 
   def rotate_forwards(message, shift_amounts)
-    split_message = message.split("")
+    split_message = message.downcase.split("")
     encoded_message = split_message.map.with_index do |character, index|
       letter_conversion(character, index, shift_amounts, 1)
     end

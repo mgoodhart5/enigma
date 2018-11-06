@@ -3,7 +3,7 @@ require './lib/rotator'
 require './lib/shift'
 
 class RotatorTest < Minitest::Test
-  
+
   def test_that_it_exists
     rotator = Rotator.new
 
@@ -17,20 +17,31 @@ class RotatorTest < Minitest::Test
     assert_equal expected, rotator.character_map
   end
 
-  def test_that_it_can_rotate_a_letter
+  def test_that_it_can_rotate_a_letter_upcase_or_down_results_in_downcase
     rotator = Rotator.new
-    shift = Shift.new("05412")
-    shift_amounts = shift.shift_values
+    shift_1 = Shift.new("05412")
+    shift_amounts_1 = shift_1.shift_values
 
-    assert_equal "o", rotator.rotate_forwards("a", shift_amounts)
+    assert_equal "o", rotator.rotate_forwards("a", shift_amounts_1)
+    assert_equal "o", rotator.rotate_forwards("A", shift_amounts_1)
+
+    shift_2 = Shift.new("78234")
+    shift_amounts_2 = shift_2.shift_values
+    # figure this out by hand
+    assert_equal "g", rotator.rotate_forwards("a", shift_amounts_2)
   end
 
   def test_that_it_can_rotate_and_produce_an_encoded_word
     rotator = Rotator.new
-    shift = Shift.new("05412")
-    shift_amounts = shift.shift_values
+    shift_1 = Shift.new("05412")
+    shift_amounts_1 = shift_1.shift_values
 
-    assert_equal "vnaab", rotator.rotate_forwards("hello", shift_amounts)
+    assert_equal "vnaab", rotator.rotate_forwards("hello", shift_amounts_1)
+
+    shift_2 = Shift.new("78234")
+    shift_amounts_2 = shift_2.shift_values
+    # figure this out by hand
+    assert_equal "nojwu", rotator.rotate_forwards("hello", shift_amounts_2)
   end
 
   def test_that_it_returns_unknown_characters_as_themselves
@@ -53,8 +64,6 @@ class RotatorTest < Minitest::Test
 
     assert_equal "neabu lexlt", actual_2
   end
-
-  # use a real date and test other dates to ensure correctness and some whatevers
 
   def test_that_it_can_decrypt_with_shift_value_also
     rotator = Rotator.new
