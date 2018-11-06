@@ -29,7 +29,7 @@ class ShiftTest < Minitest::Test
   def test_that_it_can_mmddyy_a_date_object_or_to_i_a_date_string
     shift = Shift.new("02715")
 
-    assert_equal 51118, shift.date_format
+    assert_equal Integer, shift.date_format.class
 
     shift = Shift.new("02715", "040895")
 
